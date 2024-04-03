@@ -1,0 +1,40 @@
+.search-form {
+    display: flex;
+    width: 100%;
+    gap: 0.5ch;
+}
+
+.search-form input, .search-form button {
+    padding: 0.75ch;
+    outline: none;
+}
+
+.search-form button {
+    border: solid black 0.1ch;
+    border-radius: 1ch;
+    background-color: plum;
+}
+
+.search-form button:hover, .search-form button:focus {
+    background-color: fuchsia;
+}
+
+.search-form button:disabled {
+    background-color: darkviolet;
+    color: whitesmoke;
+}
+
+.search-form input {
+    flex-grow: 1;
+    border: solid black 0.1ch;
+    border-radius: 1ch;
+}
+
+.search-form input:focus {
+    border-color: fuchsia;
+}
+
+.search-form label::after {
+    content: ':';
+    margin-left: 0.5ch;
+}
