@@ -1,4 +1,5 @@
 import './App.css'
+import WeatherApp from './containers/weather-app/weather-app.jsx'
 
 function App() {
 
@@ -6,7 +7,7 @@ function App() {
     <>
       <h1>Exo 07 - Weather App</h1>
       <main>
-        
+        <WeatherApp />
       </main>
     </>
   )
