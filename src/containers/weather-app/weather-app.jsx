@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import SearchBar from '../../components/search-bar/search-bar.jsx';
+import WeatherRequest from '../../components/weather-request/weather-request.jsx';
 
 const WeatherApp = () => {
 
+    const [city, setCity] = useState(null); 
+
     const handleSearchCity = (city) => {
-        console.log(city);
+        setCity(city.toLowerCase());
     };
 
     return (
@@ -13,7 +17,10 @@ const WeatherApp = () => {
                 placeholder='Bruxelles'
                 onSearch={handleSearchCity}
                 />
-        
+
+            {city && (
+                <WeatherRequest city={city} />
+            )}
         </>
     )
 };
