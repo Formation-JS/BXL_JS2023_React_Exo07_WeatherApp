@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
 import WeatherRequest from './weather-request.jsx';
 
-const WeatherListRequest = ({ cities }) => {
+const WeatherListRequest = ({ cities, onRemove }) => {
 
     const citiesJSX = cities.map(
-        city => <WeatherRequest key={city} city={city} />
+        city => <WeatherRequest key={city} 
+                    city={city}
+                    onAction={() => onRemove(city)}
+                    action='❌'/>
     );
 
     return (

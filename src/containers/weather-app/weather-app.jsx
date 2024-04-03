@@ -19,6 +19,10 @@ const WeatherApp = () => {
             }
             return fav;
         });
+    };
+
+    const handleRemoveToFav = (city) => {
+        setFav(fav => fav.filter(f => f !== city))
     }
 
     return (
@@ -31,17 +35,16 @@ const WeatherApp = () => {
             />
 
             {city && (
-                <>
-                    <WeatherRequest city={city} />
-                    <button onClick={handleAddToFav}
-                        disabled={fav.includes(city)}>
-                        Ajouter aux favoris !
-                    </button>
-                </>
+                <WeatherRequest city={city} 
+                    onAction={handleAddToFav} 
+                    action='🌟'/>
             )}
 
             <h2>Liste des villes sauvegardés</h2>
-            <WeatherListRequest cities={fav} />
+            <WeatherListRequest 
+                cities={fav}
+                onRemove={handleRemoveToFav}
+            />
         </>
     )
 };

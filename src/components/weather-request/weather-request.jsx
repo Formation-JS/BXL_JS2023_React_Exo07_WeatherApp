@@ -4,15 +4,15 @@ import { fetchWeatherByCity } from '../../services/weather.service.js';
 
 const weatherTempOptions = { style:'unit', unit: 'celsius', minimumFractionDigits: 1, maximumFractionDigits: 1 };
 
-const WeatherData = ({ temp, desc, city, country}) => (
+const WeatherData = ({ temp, desc, city, country, action, onAction}) => (
     <div>
-        <p>{city} ({country})</p>
+        <p>{city} ({country}) {action && <span onClick={() => onAction()}>{action}</span>}</p>
         <p>Temperature : {temp.toLocaleString('fr-be', weatherTempOptions)}</p>
         <p>Météo : {desc}</p>
     </div>
 );
 
-const WeatherRequest = ({ city }) => {
+const WeatherRequest = ({ city, action, onAction }) => {
 
     const { data, isLoading } = useSWR(
         `weather/${city}`, 
@@ -26,7 +26,7 @@ const WeatherRequest = ({ city }) => {
             {isLoading ? (
                 <p>Chargement...</p>
             ) : data ? (
-                <WeatherData {...data} />
+                <WeatherData {...data} action={action} onAction={onAction} />
             ) : (
                 <p>Error :o</p>
             )}
@@ -35,10 +35,13 @@ const WeatherRequest = ({ city }) => {
 };
 
 WeatherRequest.propTypes = {
-    city: PropTypes.string.isRequired
+    city: PropTypes.string.isRequired,
+    onAction: PropTypes.func,
+    action: PropTypes.string
 };
 
 WeatherRequest.defaultProps = {
+    onAction: () => {}
 };
 
 export default WeatherRequest;
